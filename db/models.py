@@ -110,7 +110,7 @@ class Ticket(models.Model):
             ]
         if not (1 <= self.seat <= cinema_hall.seats_in_row):
             exceptions["seat"] = [
-                f"set number must be in available range: "
+                f"seat number must be in available range: "
                 f"(1, seats_in_row): (1, {cinema_hall.seats_in_row})"
             ]
         if exceptions:

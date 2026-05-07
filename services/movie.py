@@ -18,13 +18,14 @@ def get_movies(
         queryset = queryset.filter(actors__id__in=actors_ids)
 
     if title:
-        queryset = queryset.filter(title_icontains=title)
+        queryset = queryset.filter(title__icontains=title)
 
     return queryset
 
 
 def get_movie_by_id(movie_id: int) -> Movie:
     return Movie.objects.get(id=movie_id)
+
 
 @transaction.atomic
 def create_movie(
