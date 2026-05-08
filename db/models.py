@@ -63,11 +63,11 @@ class Order(models.Model):
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
+        related_name = "orders"
     )
 
     class Meta:
         ordering = ["-created_at"]
-        default_related_name = "orders"
 
     def __str__(self) -> str:
         return str(self.created_at)
@@ -77,16 +77,17 @@ class Ticket(models.Model):
     movie_session = models.ForeignKey(
         MovieSession,
         on_delete=models.CASCADE,
+        related_name = "tickets"
     )
     order = models.ForeignKey(
         Order,
         on_delete=models.CASCADE,
+        related_name = "tickets"
     )
     row = models.IntegerField()
     seat = models.IntegerField()
 
     class Meta:
-        default_related_name = "tickets"
         constraints = [
             models.UniqueConstraint(
                 fields=["row", "seat", "movie_session"],
